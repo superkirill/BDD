@@ -48,3 +48,11 @@ def step_impl(context, note):
 @then('it plays it and signals that everything is okay')
 def step_impl(context):
     assert (context.play == True)
+
+@when ('it is asked to play a horrible incorrect note {bad_note}')
+def step_impl(context, bad_note):
+    context.play = context.generator.play(note=bad_note)
+
+@then('it shows that something went wrong')
+def step_impl(context):
+    assert (context.play == False)

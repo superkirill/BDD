@@ -55,3 +55,15 @@ Feature: Testing class Generator
     | A     |
     | G#    |
     | F     |
+
+  Scenario Outline: Testing how the generator reacts to incorrect
+    notes it is asked to play
+    Given Generator
+    When it is asked to play a horrible incorrect note <bad_note>
+    Then it shows that something went wrong
+
+    Examples: bad_notes
+    | bad_note  |
+    | KUSAL_DUB |
+    | 90        |
+    | LOSI      |
