@@ -77,3 +77,13 @@ Feature: Testing class Generator
     | chord   |
     | C, E, G |
     | F, A, G |
+
+  Scenario Outline: Testing how the generator can select instrument
+    Given Generator
+    When it is required to play a note <note> with a specific <instrument>
+    Then it plays it and signals that everything is okay
+
+    Examples: notes and instruments
+    | note   | instrument |
+    | C      | 1          |
+    | F      | 2          |
