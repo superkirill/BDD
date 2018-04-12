@@ -97,3 +97,14 @@ Feature: Testing class Generator
     | note   | duration |
     | C      | 1        |
     | F      | 2        |
+
+
+  Scenario Outline: Testing how the generator can play notes in specific octave
+    Given Generator
+    When it should play a note <note> in a specific <octave>
+    Then it plays it and signals that everything is okay
+
+    Examples: notes and durations
+    | note   | octave   |
+    | C      | 4        |
+    | F      | 5        |

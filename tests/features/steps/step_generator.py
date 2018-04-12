@@ -68,3 +68,7 @@ def step_impl(context, note, instrument):
 @when ('it is needed to play a note {note} with specific {duration}')
 def step_impl(context, note, duration):
     context.play = context.generator.play(note=note, duration=float(duration))
+
+@when ('it should play a note {note} in a specific {octave}')
+def step_impl(context, note, octave):
+    context.play = context.generator.play(note=note, octave=octave)
