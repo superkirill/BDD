@@ -93,16 +93,18 @@ class Generator():
             fifth = self.notes[fifth]
             return (root, third, fifth)
 
-    def play(self, note=None, chord=None):
+    def play(self, note=None, chord=None, instrument=0):
         """
             Play a note
 
             Keyword arguments:
                 note -- capital letter from A to G, (default None)
                 chord -- tuple representing a chord to be played (default None)
+                instrument -- integer representing a pygame.midi instrument (default 0)
             Return:
                 True -- if the note was played successfully
         """
+        self.player.set_instrument(instrument)
         if note is not None:
             if not isinstance(note, str) or note not in self.intervals.keys():
                 return False
