@@ -53,21 +53,34 @@ class Generator():
             11: 'B',
         }
 
-    def get_chord(self, root='C'):
+    def get_chord(self, root='C', type='major'):
         """
             Generate a chord
 
             Keyword arguments:
                 root -- capital letter from A to G, (default 'C')
+                type -- string representing the type of chord:
+                    major, minor, diminished or augmented (default 'major')
             Return:
                 tuple of three notes the chord consists of, e.g. ('C', 'E', 'G')
         """
-        third = self.intervals[root] + 4
-        if third >= 12:
-            third -= 12
-        third = self.notes[third]
-        fifth = self.intervals[root] + 7
-        if fifth >= 12:
-            fifth -= 12
-        fifth = self.notes[fifth]
-        return (root, third, fifth)
+        if type == 'major':
+            third = self.intervals[root] + 4
+            if third >= 12:
+                third -= 12
+            third = self.notes[third]
+            fifth = self.intervals[root] + 7
+            if fifth >= 12:
+                fifth -= 12
+            fifth = self.notes[fifth]
+            return (root, third, fifth)
+        elif type == 'minor':
+            third = self.intervals[root] + 3
+            if third >= 12:
+                third -= 12
+            third = self.notes[third]
+            fifth = self.intervals[root] + 7
+            if fifth >= 12:
+                fifth -= 12
+            fifth = self.notes[fifth]
+            return (root, third, fifth)
