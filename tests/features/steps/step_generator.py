@@ -59,4 +59,4 @@ def step_impl(context):
 
 @when ('it is asked to play a chord {chord}')
 def step_impl(context, chord):
-    context.play = context.generator.play(chord=chord.split(', '))
+    context.play = context.generator.play(chord=tuple(chord.split(', ')))
