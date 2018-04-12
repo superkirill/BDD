@@ -40,3 +40,11 @@ def step_impl(context, chord):
 @then('Generator throws a ValueError')
 def step_impl(context):
     assert (context.chord == ValueError)
+
+@when ('it is asked to play a note {note}')
+def step_impl(context, note):
+    context.play = context.generator.play(note=note)
+
+@then('it plays it and signals that everything is okay')
+def step_impl(context):
+    assert (context.play == True)

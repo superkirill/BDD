@@ -44,3 +44,14 @@ Feature: Testing class Generator
     | XYZ            |
     | 214`e23f       |
     | SOSISKI ALTAYA |
+
+  Scenario Outline: Testing how the generator can play notes
+    Given Generator
+    When it is asked to play a note <note>
+    Then it plays it and signals that everything is okay
+
+    Examples: note
+    | note  |
+    | A     |
+    | G#    |
+    | F     |
