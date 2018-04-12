@@ -86,3 +86,14 @@ class Generator():
                 fifth -= 12
             fifth = self.notes[fifth]
             return (root, third, fifth)
+
+    def play(self, note=None):
+        """
+            Play a note
+
+            Keyword arguments:
+                note -- capital letter from A to G, (default None)
+            Return:
+                True -- if the note was played successfully
+        """
+        return True
