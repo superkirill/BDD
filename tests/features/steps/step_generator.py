@@ -5,10 +5,10 @@ from app.generator import *
 def step_impl(context):
     context.generator = Generator()
 
-@when('the chord is requested')
-def step_impl(context):
-    context.chord = context.generator.get_chord()
+@when('the chord {chord} is requested')
+def step_impl(context, chord):
+    context.chord = context.generator.get_chord(str(chord))
 
-@then('Generator returns three notes')
-def step_impl(context):
-    assert (len(context.chord) == 3)
+@then('Generator returns {notes}')
+def step_impl(context, notes):
+    assert (context.chord == tuple(notes.split(', ')))
