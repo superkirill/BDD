@@ -1,3 +1,5 @@
+import time
+
 class Generator():
     """
         Generates chords and melodies
@@ -96,4 +98,11 @@ class Generator():
             Return:
                 True -- if the note was played successfully
         """
-        return True
+        if note is not None:
+            if not isinstance(note, str) or note not in self.intervals.keys():
+                return False
+            self.player.note_on(self.intervals[note], 120)
+            time.sleep(1000)
+            self.player.note_off(self.intervals[note], 120)
+            return True
+        return False
