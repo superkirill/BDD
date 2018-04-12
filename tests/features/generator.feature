@@ -67,3 +67,13 @@ Feature: Testing class Generator
     | KUSAL_DUB |
     | 90        |
     | LOSI      |
+
+  Scenario Outline: Testing how the generator can play chords
+    Given Generator
+    When it is asked to play a chord <chord>
+    Then it plays it and signals that everything is okay
+
+    Examples: chords
+    | chord   |
+    | C, E, G |
+    | F, A, G |

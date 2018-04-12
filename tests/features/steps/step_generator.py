@@ -56,3 +56,7 @@ def step_impl(context, bad_note):
 @then('it shows that something went wrong')
 def step_impl(context):
     assert (context.play == False)
+
+@when ('it is asked to play a chord {chord}')
+def step_impl(context, chord):
+    context.play = context.generator.play(chord=chord.split(', '))
