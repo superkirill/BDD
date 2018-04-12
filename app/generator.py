@@ -64,6 +64,8 @@ class Generator():
             Return:
                 tuple of three notes the chord consists of, e.g. ('C', 'E', 'G')
         """
+        if root not in self.intervals.keys() or type not in ['major','minor']:
+            raise ValueError
         if type == 'major':
             third = self.intervals[root] + 4
             if third >= 12:
