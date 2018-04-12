@@ -87,3 +87,13 @@ Feature: Testing class Generator
     | note   | instrument |
     | C      | 1          |
     | F      | 2          |
+
+  Scenario Outline: Testing how the generator can change duration of playing
+    Given Generator
+    When it is needed to play a note <note> with specific <duration>
+    Then it plays it and signals that everything is okay
+
+    Examples: notes and durations
+    | note   | duration |
+    | C      | 1        |
+    | F      | 2        |
