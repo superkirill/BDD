@@ -93,7 +93,7 @@ class Generator():
             fifth = self.notes[fifth]
             return (root, third, fifth)
 
-    def play(self, note=None, chord=None, duration=0.5, instrument=0):
+    def play(self, note=None, chord=None, octave=3, duration=0.5, instrument=0):
         """
             Play a note
 
@@ -110,17 +110,17 @@ class Generator():
         if note is not None:
             if not isinstance(note, str) or note not in self.intervals.keys():
                 return False
-            self.player.note_on(self.intervals[note], 120)
+            self.player.note_on(self.intervals[note] + int(octave) * 12, 120)
             time.sleep(duration)
-            self.player.note_off(self.intervals[note], 120)
+            self.player.note_off(self.intervals[note] + int(octave) * 12, 120)
             return True
         elif chord is not None:
             if not isinstance(chord, tuple):
                 raise ValueError
             for chord_note in chord:
-                self.player.note_on(self.intervals[chord_note], 120)
+                self.player.note_on(self.intervals[chord_note] + octave * 12, 120)
             time.sleep(duration)
             for chord_note in chord:
-                self.player.note_off(self.intervals[chord_note], 120)
+                self.player.note_off(self.intervals[chord_note] + octave * 12, 120)
             return True
         return False

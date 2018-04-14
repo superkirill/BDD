@@ -96,15 +96,15 @@ Feature: Testing class Generator
     Examples: notes and durations
     | note   | duration |
     | C      | 1        |
-    | F      | 2        |
+    | C#      | 2        |
 
 
-  Scenario Outline: Testing how the generator can play notes in specific octave
+  Scenario Outline: Testing how the generator can play notes in a specific octave
     Given Generator
     When it should play a note <note> in a specific <octave>
     Then it plays it and signals that everything is okay
 
-    Examples: notes and durations
+    Examples: notes and octaves
     | note   | octave   |
     | C      | 4        |
     | F      | 5        |
