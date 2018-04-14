@@ -125,6 +125,42 @@ def step_impl(context):
     context.melody = context.generator.get_melody(progression)
 
 
-@then('it returns a list of notes')
+@then('it returns a non-empty list of notes at least once over 100 attempts')
 def step_impl(context):
-    assert (isinstance(context.melody, list) == True)
+    context.melody = [context.melody] if len(context.melody) !=0 else []
+    chord_dur = [1, 0.2]
+    pause = [0.15, 1]
+    progression = [(context.generator.get_chord('E', 'minor'), chord_dur[0]),
+                   pause[0],
+                   (context.generator.get_chord('E', 'minor'), chord_dur[1]),
+                   pause[1],
+                   (context.generator.get_chord('E', 'minor'), chord_dur[0]),
+                   pause[0],
+                   (context.generator.get_chord('E', 'minor'), chord_dur[1]),
+                   pause[1],
+                   (context.generator.get_chord('D', 'major'), chord_dur[0]),
+                   pause[0],
+                   (context.generator.get_chord('D', 'major'), chord_dur[1]),
+                   pause[1],
+                   (context.generator.get_chord('G', 'major'), chord_dur[0]),
+                   pause[0],
+                   (context.generator.get_chord('G', 'major'), chord_dur[1]),
+                   pause[1],
+                   (context.generator.get_chord('C', 'major'), chord_dur[0]),
+                   pause[0],
+                   (context.generator.get_chord('C', 'major'), chord_dur[1]),
+                   pause[1],
+                   (context.generator.get_chord('E', 'minor'), chord_dur[0]),
+                   pause[0],
+                   (context.generator.get_chord('E', 'minor'), chord_dur[1]),
+                   pause[1],
+                   (context.generator.get_chord('E', 'minor'), chord_dur[0]),
+                   pause[0],
+                   (context.generator.get_chord('E', 'minor'), chord_dur[1]),
+                   pause[1],
+                   ]
+    for i in range(100):
+        melody = context.generator.get_melody(progression)
+        if len(melody) != 0:
+            context.melody.append(context.generator.get_melody(progression))
+    assert (len(context.melody) != 0)

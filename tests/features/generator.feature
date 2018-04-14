@@ -164,4 +164,5 @@ Feature: Testing class Generator
   Scenario: Testing how the generator generates melodies
     Given Generator
     When it is asked to generate a melody based on progression E minor, D, G, C, E minor
-    Then it returns a list of notes
+    Then it returns a non-empty list of notes at least once over 100 attempts
+
