@@ -108,3 +108,15 @@ Feature: Testing class Generator
     | note   | octave   |
     | C      | 4        |
     | F      | 5        |
+
+  Scenario Outline: Testing how the generator handles incorrect chords
+    Given Generator
+    When it tries to play an incorrect chord <chord>
+    Then it shows that something went wrong
+
+    Examples: bad chords
+    | chord    |
+    | GGG      |
+    | 1+2      |
+    | C, E, G  |
+    | G, X, Y  |

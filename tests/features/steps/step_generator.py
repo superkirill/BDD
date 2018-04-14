@@ -72,3 +72,7 @@ def step_impl(context, note, duration):
 @when ('it should play a note {note} in a specific {octave}')
 def step_impl(context, note, octave):
     context.play = context.generator.play(note=note, octave=float(octave))
+
+@when ('it tries to play an incorrect chord {chord}')
+def step_impl(context, chord):
+    context.play = context.generator.play(chord=tuple(chord.split(', ')))
