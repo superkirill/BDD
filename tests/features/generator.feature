@@ -187,3 +187,13 @@ Feature: Testing class Generator
     | -10         |
     | five        |
     | 1231231     |
+
+  Scenario Outline: Testing how the generator can perform tracks
+    Given  Generator
+    When it is asked to perform a track <track>
+    Then it performs it and signals that everything is fine
+
+    Examples: tracks
+    | track                          |
+    | [('C', 1), ('G', 0.5)]         |
+    | [('F', 1)]                     |

@@ -210,3 +210,12 @@ def step_impl(context, max):
                    pause[1],
                    ]
     context.melody = context.generator.get_melody(progression, max_notes=max)
+
+@when('it is asked to perform a track {track}')
+def step_impl(context, track):
+    context.perform = context.generator.perform(track)
+
+@then('it performs it and signals that everything is fine')
+def step_impl(context):
+    assert (context.perform == True)
+
