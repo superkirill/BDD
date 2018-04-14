@@ -2,6 +2,8 @@ import pygame.midi
 import time
 from numpy import random as rd
 import random
+import os
+import subprocess
 
 class Generator():
     """
@@ -208,13 +210,15 @@ class Generator():
                 melody.append((note, dur))
         return melody
 
-    def perform(self, to_perform=[]):
+    def perform(self, to_perform=[], octave=3, instrument=None):
         """
             Play a sequence of notes or chords
 
             Keyword arguments:
                 to_perform -- a list of tuples and doubles where each tuple represents a chord (a note) and
                     its duration, and doubles represent pauses between chords (notes) (default [])
+                octave -- integer greater than zero and lesser than 7 representing an octave to play in
+                instrument -- integer representing a pygame.midi instrument (default None)
             Return:
                 True -- if notes or chords are played successfully
                 False -- if args had incorrect types or values
@@ -226,12 +230,12 @@ class Generator():
                 time.sleep(element)
             else:
                 if isinstance(element[0], tuple):
-                    self.play(chord=element[0], duration=element[1])
+                    self.play(chord=element[0], duration=element[1], octave=octave, instrument=instrument)
                 else:
-                    self.play(note=element[0], duration=element[1])
+                    self.play(note=element[0], duration=element[1], octave=octave, instrument=instrument)
         return True
 
-    def mix(self, *args):
+    def mix(self, *args, instruments=None):
         """
             Play multiple tracks at once
 
@@ -242,5 +246,41 @@ class Generator():
                     pauses between the sounds - double numbers
             Return:
                 True -- if played successfully
+                False -- if *args had incorrect types or values
         """
-        return True
+        pos = 0
+
+        for arg in args:
+            if isinstance(arg, tuple) or isinstance(arg, list):
+                if pos % 2 != 0:
+                    return False
+                track = arg
+                pos += 1
+            elif isinstance(arg, int):
+                if arg > 7 or arg < 1:
+                    return False
+                if pos % 2 != 1:
+                    return False
+                if isinstance(instruments, list) and len(instruments) < int(pos / 2) + 1:
+                    return False
+                if not isinstance(instruments, int):
+                    if not isinstance(instruments[int((pos) / 2)], int):
+                        return False
+                    elif not 0 <= instruments[int((pos) / 2)] < 80:
+                        return False
+                    else:
+                        ins = instruments[int((pos) / 2)]
+                else:
+                    if instruments == 0:
+                        ins = instruments
+                    else:
+                        return False
+
+                dir_path = os.path.dirname(os.path.realpath(__file__))
+                subprocess.Popen("python \"%s/Generator.py\" \"%s\" %d %d" % (dir_path, track, arg, ins),
+                                 shell=True,
+                                 stdin=None, stdout=None, stderr=None, close_fds=True)
+                pos += 1
+                time.sleep(0.1)
+            else:
+                return False
