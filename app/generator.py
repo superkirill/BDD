@@ -207,3 +207,15 @@ class Generator():
                 elements += 1
                 melody.append((note, dur))
         return melody
+
+    def perform(self, to_perform=[]):
+        """
+            Play a sequence of notes or chords
+
+            Keyword arguments:
+                to_perform -- a list of tuples and doubles where each tuple represents a chord (a note) and
+                    its duration, and doubles represent pauses between chords (notes) (default [])
+            Return:
+                True -- if notes or chords are played successfully
+        """
+        return True
