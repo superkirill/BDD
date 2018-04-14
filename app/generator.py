@@ -108,6 +108,8 @@ class Generator():
                 False -- if some arg did not match the specification
         """
         self.player.set_instrument(instrument)
+        if not isinstance(octave, int) or octave < 0 or octave > 7:
+            return False
         if note is not None:
             if not isinstance(note, str) or note not in self.intervals.keys():
                 return False
