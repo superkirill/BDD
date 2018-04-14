@@ -105,6 +105,7 @@ class Generator():
                     or the chord should sound
             Return:
                 True -- if the note was played successfully
+                False -- if some arg did not match the specification
         """
         self.player.set_instrument(instrument)
         if note is not None:
@@ -116,7 +117,10 @@ class Generator():
             return True
         elif chord is not None:
             if not isinstance(chord, tuple):
-                raise ValueError
+                return False
+            for chord_note in chord:
+                if not isinstance(chord_note, str) or chord_note not in self.intervals.keys():
+                    return False
             for chord_note in chord:
                 self.player.note_on(self.intervals[chord_note] + octave * 12, 120)
             time.sleep(duration)

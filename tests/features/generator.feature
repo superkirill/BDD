@@ -118,5 +118,4 @@ Feature: Testing class Generator
     | chord    |
     | GGG      |
     | 1+2      |
-    | C, E, G  |
     | G, X, Y  |
