@@ -174,5 +174,5 @@ Feature: Testing class Generator
     Examples: progressions
     | progression |
     | X           |
-    |             |
+    | '           |
     | 1231231     |

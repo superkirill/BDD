@@ -148,7 +148,10 @@ class Generator():
             Return:
                 list of tuples and doubles, where each tuple contains a note and duration
                     and each double represents a pause
+                or False if args have incorrect types or values
         """
+        if not (isinstance(progression, list) or isinstance(progression, tuple)):
+            return False
         melody = []
         number_of_notes_and_pauses = random.randint(1, max_notes)
         round_duration = 0
