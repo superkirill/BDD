@@ -176,3 +176,14 @@ Feature: Testing class Generator
     | X           |
     | '           |
     | 1231231     |
+
+  Scenario Outline: Testing how the generator handles wrong max allowed amount of notes in a melody
+    Given Generator
+    When it is asked to generate a melody with incorrect amount of max allowed notes <max>
+    Then it shows that something went wrong!
+
+    Examples: max
+    | max         |
+    | -10         |
+    | five        |
+    | 1231231     |

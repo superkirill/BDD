@@ -175,3 +175,38 @@ def step_impl(context, progression):
 @then('it shows that something went wrong!')
 def step_impl(context):
     assert (context.melody == False)
+
+@when('it is asked to generate a melody with incorrect amount of max allowed notes {max}')
+def step_impl(context, max):
+    chord_dur = [1, 0.2]
+    pause = [0.15, 1]
+    progression = [(context.generator.get_chord('E', 'minor'), chord_dur[0]),
+                   pause[0],
+                   (context.generator.get_chord('E', 'minor'), chord_dur[1]),
+                   pause[1],
+                   (context.generator.get_chord('E', 'minor'), chord_dur[0]),
+                   pause[0],
+                   (context.generator.get_chord('E', 'minor'), chord_dur[1]),
+                   pause[1],
+                   (context.generator.get_chord('D', 'major'), chord_dur[0]),
+                   pause[0],
+                   (context.generator.get_chord('D', 'major'), chord_dur[1]),
+                   pause[1],
+                   (context.generator.get_chord('G', 'major'), chord_dur[0]),
+                   pause[0],
+                   (context.generator.get_chord('G', 'major'), chord_dur[1]),
+                   pause[1],
+                   (context.generator.get_chord('C', 'major'), chord_dur[0]),
+                   pause[0],
+                   (context.generator.get_chord('C', 'major'), chord_dur[1]),
+                   pause[1],
+                   (context.generator.get_chord('E', 'minor'), chord_dur[0]),
+                   pause[0],
+                   (context.generator.get_chord('E', 'minor'), chord_dur[1]),
+                   pause[1],
+                   (context.generator.get_chord('E', 'minor'), chord_dur[0]),
+                   pause[0],
+                   (context.generator.get_chord('E', 'minor'), chord_dur[1]),
+                   pause[1],
+                   ]
+    context.melody = context.generator.get_melody(progression, max_notes=max)
