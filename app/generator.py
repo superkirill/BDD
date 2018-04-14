@@ -134,3 +134,17 @@ class Generator():
                 self.player.note_off(self.intervals[chord_note] + octave * 12, 120)
             return True
         return False
+
+    def get_melody(self, progression=None):
+        """
+            Generate melody for a give chord progression
+
+            Keyword arguments:
+                progression -- list of tuples and doubles where each tuple represents a chord and
+                    its duration, and doubles represent pauses between chords (default None)
+
+            Return:
+                list of tuples and doubles, where each tuple contains a note and duration
+                    and each double represents a pause
+        """
+        return []
