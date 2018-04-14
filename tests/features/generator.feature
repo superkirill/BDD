@@ -197,3 +197,14 @@ Feature: Testing class Generator
     | track                          |
     | [('C', 1), ('G', 0.5)]         |
     | [('F', 1)]                     |
+
+
+  Scenario Outline: Testing how the generator handles incorrect tracks
+    Given  Generator
+    When it is asked to perform a track <track>
+    Then it says that something went wrong
+
+    Examples: bad tracks
+    | track                          |
+    | 1123                           |
+    | ROZENBAUM                      |

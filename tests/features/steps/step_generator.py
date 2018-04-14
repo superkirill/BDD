@@ -219,3 +219,6 @@ def step_impl(context, track):
 def step_impl(context):
     assert (context.perform == True)
 
+@then('it says that something went wrong')
+def step_impl(context):
+    assert (context.perform == False)
