@@ -208,3 +208,12 @@ Feature: Testing class Generator
     | track                          |
     | 1123                           |
     | ROZENBAUM                      |
+
+  Scenario Outline: Testing how the generator can mix tracks
+    Given  Generator
+    When it is asked to mix track <track1> and <track2>
+    Then it mixes them and says that everything is okay
+
+    Examples: tracks
+    | track1                          | track2                 |
+    | [('C', 1), ('G', 0.5)]          | [('E', 1), ('B', 0.5)] |

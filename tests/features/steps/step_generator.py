@@ -222,3 +222,11 @@ def step_impl(context):
 @then('it says that something went wrong')
 def step_impl(context):
     assert (context.perform == False)
+
+@when('it is asked to mix track {track1} and {track2}')
+def step_impl(context, track1, track2):
+    context.mix = context.generator.mix(track1, track2)
+
+@then('it mixes them and says that everything is okay')
+def step_impl(context):
+    assert (context.mix == True)
