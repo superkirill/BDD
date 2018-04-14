@@ -230,3 +230,11 @@ def step_impl(context, track1, track2):
 @then('it mixes them and says that everything is okay')
 def step_impl(context):
     assert (context.mix == True)
+
+@when('it is asked to mix incorrect tracks {track1} and {track2} and play them in octaves {octave1} and {octave2} on instruments {instruments}')
+def step_impl(context, track1, track2, octave1, octave2, instruments):
+    context.mix = context.generator.mix(track1, octave1, track2, octave2, instruments=instruments)
+
+@then('it makes it obvious that something went wrong')
+def step_impl(context):
+    assert (context.mix == False)

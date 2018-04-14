@@ -217,3 +217,13 @@ Feature: Testing class Generator
     Examples: tracks
     | track1                          | track2                 |
     | [('C', 1), ('G', 0.5)]          | [('E', 1), ('B', 0.5)] |
+
+  Scenario Outline: Testing how the generator mixes incorrect tracks
+    Given  Generator
+    When it is asked to mix incorrect tracks <track1> and <track2> and play them in octaves <octave1> and <octave2> on instruments <instruments>
+    Then it makes it obvious that something went wrong
+
+    Examples: bad tracks
+    | track1                          | track2                 | ocatve 1 | octave 2 | instruments|
+    | [('C', 1), ('G', 0.5)]          | [('E', 1), ('B', 0.5)] | -2       |    5     | [1,2]      |
+    | ververve                        |   fiu2h3ph13p8923      | ververv  | vrerver  | ververver  |
