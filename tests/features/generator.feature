@@ -119,3 +119,16 @@ Feature: Testing class Generator
     | GGG      |
     | 1+2      |
     | G, X, Y  |
+
+  Scenario Outline: Testing how the generator handles incorrect octaves
+    Given Generator
+    When it tries to play a note in an incorrect octave <octave>
+    Then it shows that something went wrong
+
+    Examples: bad octaves
+    | octave   |
+    | -1       |
+    | -555     |
+    | 555      |
+    | OCTAVE   |
+    | 5, 5     |
