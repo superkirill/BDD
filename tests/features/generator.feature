@@ -132,3 +132,17 @@ Feature: Testing class Generator
     | 555      |
     | OCTAVE   |
     | 5, 5     |
+
+
+  Scenario Outline: Testing how the generator handles incorrect instruments
+    Given Generator
+    When it tries to play on an incorrect instrument <instrument>
+    Then it shows that something went wrong
+
+    Examples: bad instruments
+    | instrument   |
+    | -1           |
+    | -555         |
+    | 555          |
+    | PIANO        |
+    | 5, 5         |
