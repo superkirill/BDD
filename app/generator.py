@@ -107,6 +107,8 @@ class Generator():
                 True -- if the note was played successfully
                 False -- if some arg did not match the specification
         """
+        if not isinstance(instrument, int) or not 0 <= instrument <= 127:
+            return False
         self.player.set_instrument(instrument)
         if not isinstance(octave, int) or octave < 0 or octave > 7:
             return False
