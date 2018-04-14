@@ -164,3 +164,7 @@ def step_impl(context):
         if len(melody) != 0:
             context.melody.append(context.generator.get_melody(progression))
     assert (len(context.melody) != 0)
+
+@when('it is asked to generate a melody based on an incorrect progression {progression}')
+def step_impl(context, progression):
+    context.melody = context.generator.get_melody(progression)
