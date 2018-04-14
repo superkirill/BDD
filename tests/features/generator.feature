@@ -146,3 +146,17 @@ Feature: Testing class Generator
     | 555          |
     | PIANO        |
     | 5, 5         |
+
+
+  Scenario Outline: Testing how the generator handles incorrect durations
+    Given Generator
+    When it tries to play with incorrect duration <duration>
+    Then it shows that something went wrong
+
+    Examples: bad durations
+    | duration     |
+    | -1           |
+    | -555         |
+    | 555          |
+    | DURATION     |
+    | 5, 5         |

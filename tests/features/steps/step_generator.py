@@ -84,3 +84,7 @@ def step_impl(context, octave):
 @when('it tries to play on an incorrect instrument {instrument}')
 def step_impl(context, instrument):
     context.play = context.generator.play(note='C', instrument=instrument)
+
+@when('it tries to play with incorrect duration {duration}')
+def step_impl(context, duration):
+    context.play = context.generator.play(note='C', duration=duration)
