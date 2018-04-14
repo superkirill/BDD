@@ -217,5 +217,16 @@ class Generator():
                     its duration, and doubles represent pauses between chords (notes) (default [])
             Return:
                 True -- if notes or chords are played successfully
+                False -- if args had incorrect types or values
         """
+        if not (isinstance(to_perform, list) or isinstance(to_perform, tuple)):
+            return False
+        for element in to_perform:
+            if isinstance(element, int) or isinstance(element, float):
+                time.sleep(element)
+            else:
+                if isinstance(element[0], tuple):
+                    self.play(chord=element[0], duration=element[1])
+                else:
+                    self.play(note=element[0], duration=element[1])
         return True
