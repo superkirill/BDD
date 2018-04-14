@@ -160,3 +160,8 @@ Feature: Testing class Generator
     | 555          |
     | DURATION     |
     | 5, 5         |
+
+  Scenario: Testing how the generator generates melodies
+    Given Generator
+    When it is asked to generate a melody based on progression E minor, D, G, C, E minor
+    Then it returns a list of notes

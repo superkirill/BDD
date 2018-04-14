@@ -88,3 +88,43 @@ def step_impl(context, instrument):
 @when('it tries to play with incorrect duration {duration}')
 def step_impl(context, duration):
     context.play = context.generator.play(note='C', duration=duration)
+
+@when('it is asked to generate a melody based on progression E minor, D, G, C, E minor')
+def step_impl(context):
+    chord_dur = [1, 0.2]
+    pause = [0.15, 1]
+    progression = [(context.generator.get_chord('E', 'minor'), chord_dur[0]),
+                   pause[0],
+                   (context.generator.get_chord('E', 'minor'), chord_dur[1]),
+                   pause[1],
+                   (context.generator.get_chord('E', 'minor'), chord_dur[0]),
+                   pause[0],
+                   (context.generator.get_chord('E', 'minor'), chord_dur[1]),
+                   pause[1],
+                   (context.generator.get_chord('D', 'major'), chord_dur[0]),
+                   pause[0],
+                   (context.generator.get_chord('D', 'major'), chord_dur[1]),
+                   pause[1],
+                   (context.generator.get_chord('G', 'major'), chord_dur[0]),
+                   pause[0],
+                   (context.generator.get_chord('G', 'major'), chord_dur[1]),
+                   pause[1],
+                   (context.generator.get_chord('C', 'major'), chord_dur[0]),
+                   pause[0],
+                   (context.generator.get_chord('C', 'major'), chord_dur[1]),
+                   pause[1],
+                   (context.generator.get_chord('E', 'minor'), chord_dur[0]),
+                   pause[0],
+                   (context.generator.get_chord('E', 'minor'), chord_dur[1]),
+                   pause[1],
+                   (context.generator.get_chord('E', 'minor'), chord_dur[0]),
+                   pause[0],
+                   (context.generator.get_chord('E', 'minor'), chord_dur[1]),
+                   pause[1],
+                   ]
+    context.melody = context.generator.get_melody(progression)
+
+
+@then('it returns a list of notes')
+def step_impl(context):
+    assert (isinstance(context.melody, list) == True)
