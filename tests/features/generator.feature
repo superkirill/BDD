@@ -169,7 +169,7 @@ Feature: Testing class Generator
   Scenario Outline: Testing how the generator handles wrong input progressions
     Given Generator
     When it is asked to generate a melody based on an incorrect progression <progression>
-    Then it shows that something went wrong
+    Then it shows that something went wrong!
 
     Examples: progressions
     | progression |
