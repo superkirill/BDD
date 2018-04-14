@@ -152,6 +152,8 @@ class Generator():
         """
         if not (isinstance(progression, list) or isinstance(progression, tuple)):
             return False
+        if (not isinstance(max_notes,int)) or max_notes <= 0:
+            return False
         melody = []
         number_of_notes_and_pauses = random.randint(1, max_notes)
         round_duration = 0
