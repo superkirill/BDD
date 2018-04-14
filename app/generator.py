@@ -2,7 +2,8 @@ import pygame.midi
 import time
 from numpy import random as rd
 import random
-import os
+import os, sys
+import ast
 import subprocess
 
 class Generator():
@@ -284,3 +285,47 @@ class Generator():
                 time.sleep(0.1)
             else:
                 return False
+
+def main():
+    generator = Generator()
+    chord_dur = [1, 0.2]
+    pause = [0.15, 1]
+    progression = [(generator.get_chord('E', 'minor'), chord_dur[0]),
+                   pause[0],
+                   (generator.get_chord('E', 'minor'), chord_dur[1]),
+                   pause[1],
+                   (generator.get_chord('E', 'minor'), chord_dur[0]),
+                   pause[0],
+                   (generator.get_chord('E', 'minor'), chord_dur[1]),
+                   pause[1],
+                   (generator.get_chord('D', 'major'), chord_dur[0]),
+                   pause[0],
+                   (generator.get_chord('D', 'major'), chord_dur[1]),
+                   pause[1],
+                   (generator.get_chord('G', 'major'), chord_dur[0]),
+                   pause[0],
+                   (generator.get_chord('G', 'major'), chord_dur[1]),
+                   pause[1],
+                   (generator.get_chord('C', 'major'),chord_dur[0]),
+                   pause[0],
+                   (generator.get_chord('C', 'major'), chord_dur[1]),
+                   pause[1],
+                   (generator.get_chord('E', 'minor'), chord_dur[0]),
+                   pause[0],
+                   (generator.get_chord('E', 'minor'), chord_dur[1]),
+                   pause[1],
+                   (generator.get_chord('E', 'minor'), chord_dur[0]),
+                   pause[0],
+                   (generator.get_chord('E', 'minor'), chord_dur[1]),
+                   pause[1],
+                   ]
+    melody = generator.get_melody(progression, 40)
+    generator.mix(progression, 3, melody, 6, instruments=[20,34])
+
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        generator = Generator()
+        track = ast.literal_eval(sys.argv[1])
+        generator.perform(track, int(sys.argv[2]), int(sys.argv[3]))
+    else:
+        main()
