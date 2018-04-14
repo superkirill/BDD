@@ -230,3 +230,17 @@ class Generator():
                 else:
                     self.play(note=element[0], duration=element[1])
         return True
+
+    def mix(self, *args):
+        """
+            Play multiple tracks at once
+
+            Arguments:
+                *args -- tracks to be played. Each track is a list or a tuple
+                    of notes - capital letters - or chords - tuples of capital
+                    letters - and their durations (double numbers), as well as
+                    pauses between the sounds - double numbers
+            Return:
+                True -- if played successfully
+        """
+        return True
